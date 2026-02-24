@@ -24,9 +24,9 @@ window.addEventListener("resize", ajustarCanvas);
 function preloadSounds() {
     const promises = [];
     
-    // Se o objeto ainda não existir, saímos da função sem quebrar o código
+    // Verificação de segurança
     if (!window.playersData) {
-        console.error("ERRO: playersData não encontrado!");
+        console.error("playersData não carregado!");
         return promises;
     }
 
@@ -752,3 +752,4 @@ window.addEventListener('beforeunload', () => {
     }
 
 });
+
