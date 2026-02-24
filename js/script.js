@@ -23,8 +23,16 @@ window.addEventListener("resize", ajustarCanvas);
 
 function preloadSounds() {
     const promises = [];
-     Object.values(window.playersData).forEach(countryData => {
-        if (countryData.gameMusic) {
+    
+    // Se o objeto ainda não existir, saímos da função sem quebrar o código
+    if (!window.playersData) {
+        console.error("ERRO: playersData não encontrado!");
+        return promises;
+    }
+
+    Object.values(window.playersData).forEach(countryData => {
+        // Verifica se countryData e gameMusic existem antes de usar
+        if (countryData && countryData.gameMusic) {
             soundFiles[countryData.gameMusic] = countryData.gameMusic;
         }
     });
@@ -742,4 +750,5 @@ window.addEventListener('beforeunload', () => {
     if (window.gameState.screen === SCREENS.GAME) {
         window.gameLogic.saveGameInProgress();
     }
+
 });
